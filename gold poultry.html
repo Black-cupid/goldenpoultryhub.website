@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Golden Poultry Equipment Hub offers high-quality poultry farming equipment, including feeders, cages, and incubators. Shop now for reliable products and excellent customer service.">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Golden Poultry Equipment Hub">
+    <link rel="canonical" href="https://www.poultryequipmenthub.com/">
+    <title>Golden Poultry Equipment Hub - Quality Poultry Farming Supplies</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a202c, #4a5568);
+            color: #e2e8f0;
+            font-family: 'Arial', sans-serif;
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, #f97316, #d4af37);
+            border-radius: 12px;
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+        }
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s ease-in forwards;
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        .cart-item {
+            border-bottom: 1px solid #d4af37;
+            padding: 15px 0;
+            transition: background 0.2s;
+        }
+        .cart-item:hover {
+            background: rgba(249, 115, 22, 0.1);
+        }
+        .cart-button {
+            background: #d4af37;
+            color: #1a202c;
+            font-weight: bold;
+            padding: 12px 24px;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+        .cart-button:hover {
+            background: #b8972e;
+        }
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            touch-action: pan-y;
+        }
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .carousel-item {
+            flex: 0 0 100%;
+            padding: 0 10px;
+        }
+        @media (min-width: 640px) {
+            .carousel-item {
+                flex: 0 0 50%;
+            }
+        }
+        @media (min-width: 1024px) {
+            .carousel-item {
+                flex: 0 0 33.33%;
+            }
+        }
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #f97316;
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            transition: transform 0.3s ease;
+        }
+        .carousel-button:hover {
+            transform: translateY(-50%) scale(1.2);
+        }
+        #prev-button { left: 10px; }
+        #next-button { right: 10px; }
+        .carousel-button::before {
+            content: '';
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            transform: rotate(135deg);
+        }
+        #next-button::before {
+            transform: rotate(-45deg);
+        }
+        .spinner {
+            display: none;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #d4af37;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .error {
+            border-color: #e53e3e;
+        }
+        .error-message {
+            color: #e53e3e;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+        section {
+            min-height: calc(100vh - 4rem);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .content-bg {
+            background: rgba(26, 32, 44, 0.85);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 50;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: #1a202c;
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+        }
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: #e2e8f0;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        .modal-close:hover {
+            color: #f97316;
+        }
+        .egg-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 0;
+            perspective: 1500px;
+        }
+        .golden-egg {
+            width: 150px;
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(circle at 30% 10%, #ffdf66 5%, #ffd700 20%, #e6b800 50%, #b8860b 80%);
+            border-radius: 50% / 60% 60% 40% 40%;
+            box-shadow: inset 0 -25px 50px rgba(0, 0, 0, 0.35),
+                      inset 20px 20px 40px rgba(255, 223, 102, 0.6),
+                      0 15px 30px rgba(0, 0, 0, 0.5);
+            filter: brightness(1.1) contrast(1.2);
+            animation: hatch 8s infinite ease-in-out;
+            will-change: transform, box-shadow, filter;
+        }
+        .golden-egg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.2) 1px, transparent 2px);
+            background-size: 10px 10px;
+            opacity: 0.3;
+            mix-blend-mode: overlay;
+        }
+        .golden-egg .shell-top,
+        .golden-egg .shell-bottom {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            box-shadow: inherit;
+            filter: inherit;
+            animation: hatch-3d 8s infinite ease-in-out;
+        }
+        .golden-egg .shell-top {
+            top: 0;
+            height: 30%;
+            clip-path: polygon(0 0, 100% 0, 95% 75%, 80% 95%, 60% 90%, 40% 100%, 20% 85%, 5% 65%);
+            transform-origin: top;
+            animation-delay: 0.3s;
+        }
+        .golden-egg .shell-bottom {
+            top: 30%;
+            height: 70%;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            transform-origin: bottom;
+            animation-delay: 0s;
+        }
+        .golden-egg .shell-fragment {
+            position: absolute;
+            background: inherit;
+            box-shadow: inherit;
+            animation: fragment-fall 8s infinite ease-in-out;
+            opacity: 0;
+        }
+        .golden-egg .shell-fragment-1 {
+            top: 20%;
+            left: 10%;
+            width: 20px;
+            height: 20px;
+            clip-path: polygon(0 0, 80% 20%, 100% 80%, 20% 100%);
+            animation-delay: 0.5s;
+        }
+        .golden-egg .shell-fragment-2 {
+            top: 25%;
+            right: 10%;
+            width: 15px;
+            height: 15px;
+            clip-path: polygon(0 0, 90% 30%, 70% 100%, 10% 90%);
+            animation-delay: 0.7s;
+        }
+        .golden-egg .inner-glow {
+            position: absolute;
+            top: 15%;
+            left: 50%;
+            width: 85%;
+            height: 60%;
+            background: radial-gradient(circle, rgba(255, 245, 101, 0.8) 20%, transparent 70%);
+            transform: translateX(-50%);
+            opacity: 0;
+            animation: glow 8s infinite ease-in-out;
+            filter: blur(15px);
+        }
+        .golden-egg .chick {
+            position: absolute;
+            bottom: 25%;
+            left: 50%;
+            transform: translateX(-50%) scale(0);
+            width: 70px;
+            height: 80px;
+            opacity: 0;
+            animation: pop-out 8s infinite ease-in-out;
+            animation-delay: 4s;
+            will-change: transform, opacity;
+        }
+        .golden-egg .chick::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 85%;
+            background: radial-gradient(circle at 50% 30%, #fffde7 20%, #ffeb3b 50%, #fbc02d 80%);
+            border-radius: 50% 50% 40% 40%;
+            box-shadow: inset 0 -5px 10px rgba(0, 0, 0, 0.2),
+                      0 5px 10px rgba(0, 0, 0, 0.3);
+        }
+        .golden-egg .chick::after {
+            content: '';
+            position: absolute;
+            top: 25%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 25px;
+            height: 15px;
+            background: linear-gradient(to bottom, #ff8f00, #ef6c00);
+            clip-path: polygon(50% 0, 100% 100%, 0 100%);
+            box-shadow: inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .golden-egg .chick .eye {
+            position: absolute;
+            top: 35%;
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(circle at 30% 30%, #fff 20%, #000 30%);
+            border-radius: 50%;
+            box-shadow: 0 0 2px #fff;
+            animation: blink 8s infinite ease-in-out;
+            animation-delay: 4.5s;
+        }
+        .golden-egg .chick .eye.left {
+            left: 20%;
+        }
+        .golden-egg .chick .eye.right {
+            right: 20%;
+        }
+        .golden-egg .chick .feather-ruffle {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 20px;
+            background: radial-gradient(circle, #fffde7 30%, transparent 70%);
+            opacity: 0.5;
+            animation: ruffle 8s infinite ease-in-out;
+            animation-delay: 4.2s;
+        }
+        @keyframes hatch {
+            0%, 100% { transform: rotate(0deg) scale(1) translateZ(0); }
+            20% { transform: rotate(3deg) scale(1.05) translateZ(10px); }
+            30% { transform: rotate(-3deg) scale(1.05) translateZ(10px); }
+            40% { transform: rotate(0deg) scale(1) translateZ(0); }
+        }
+        @keyframes hatch-3d {
+            0%, 30% { opacity: 1; transform: rotateX(0deg) translateZ(0); }
+            40% { opacity: 1; transform: rotateX(35deg) translateZ(60px); }
+            60%, 100% { opacity: 0.9; transform: rotateX(50deg) translateZ(100px); }
+        }
+        @keyframes fragment-fall {
+            0%, 40% { opacity: 0; transform: translateY(0) translateZ(0); }
+            50% { opacity: 0.8; transform: translateY(30px) translateZ(20px) rotate(20deg); }
+            70%, 100% { opacity: 0; transform: translateY(60px) translateZ(0) rotate(40deg); }
+        }
+        @keyframes glow {
+            0%, 30% { opacity: 0; transform: translateX(-50%) scale(1); }
+            40%, 60% { opacity: 0.9; transform: translateX(-50%) scale(1.15); }
+            80%, 100% { opacity: 0; transform: translateX(-50%) scale(1); }
+        }
+        @keyframes pop-out {
+            0%, 50% { opacity: 0; transform: translateX(-50%) scale(0) translateY(0); }
+            60% { opacity: 1; transform: translateX(-50%) scale(1) translateY(-40px); }
+            70% { opacity: 1; transform: translateX(-50%) scale(1.05) translateY(-45px); }
+            100% { opacity: 1; transform: translateX(-50%) scale(1) translateY(-40px); }
+        }
+        @keyframes blink {
+            0%, 80% { transform: scaleY(1); }
+            82% { transform: scaleY(0.2); }
+            85%, 100% { transform: scaleY(1); }
+        }
+        @keyframes ruffle {
+            0%, 50% { opacity: 0; transform: translateX(-50%) scale(1); }
+            60% { opacity: 0.5; transform: translateX(-50%) scale(1.1) rotate(5deg); }
+            70% { opacity: 0.5; transform: translateX(-50%) scale(1.1) rotate(-5deg); }
+            100% { opacity: 0.5; transform: translateX(-50%) scale(1) rotate(0deg); }
+        }
+        @media (max-width: 640px) {
+            .golden-egg {
+                width: 100px;
+                height: 130px;
+            }
+            .golden-egg .shell-top {
+                height: 25%;
+            }
+            .golden-egg .shell-bottom {
+                top: 25%;
+                height: 75%;
+            }
+            .golden-egg .shell-fragment-1 {
+                width: 15px;
+                height: 15px;
+            }
+            .golden-egg .shell-fragment-2 {
+                width: 10px;
+                height: 10px;
+            }
+            .golden-egg .inner-glow {
+                height: 50%;
+            }
+            .golden-egg .chick {
+                width: 50px;
+                height: 60px;
+            }
+            .golden-egg .chick::after {
+                width: 18px;
+                height: 10px;
+            }
+            .golden-egg .chick .eye {
+                width: 7px;
+                height: 7px;
+            }
+            .golden-egg .chick .feather-ruffle {
+                width: 35px;
+                height: 15px;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .golden-egg, .golden-egg * {
+                animation: none !important;
+                transform: none !important;
+                opacity: 1 !important;
+            }
+            .golden-egg::before {
+                opacity: 0.2;
+            }
+            .golden-egg .shell-top {
+                clip-path: none;
+                height: 100%;
+            }
+            .golden-egg .shell-bottom, .golden-egg .shell-fragment {
+                display: none;
+            }
+            .golden-egg .chick {
+                transform: translateX(-50%) scale(1) translateY(-40px);
+            }
+            .golden-egg .chick .feather-ruffle {
+                opacity: 0.5;
+            }
+        }
+        /* Static Ad Placeholder Styles */
+        .ad-placeholder {
+            margin: 20px auto;
+            border: 1px solid #d4af37;
+            border-radius: 8px;
+            overflow: hidden;
+            text-align: center;
+            background: #f97316;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        .ad-placeholder-catalog {
+            margin: 20px 0;
+            border: 1px solid #d4af37;
+            border-radius: 8px;
+            overflow: hidden;
+            text-align: center;
+            background: #f97316;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        .ad-header {
+            width: 728px;
+            height: 90px;
+            max-width: 100%;
+        }
+        .ad-incontent {
+            width: 300px;
+            height: 250px;
+            max-width: 100%;
+        }
+        .ad-catalog {
+            width: 160px;
+            height: 600px;
+            max-width: 100%;
+        }
+        .ad-placeholder video,
+        .ad-placeholder-catalog video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        @media (min-width: 1024px) {
+            .ad-placeholder-catalog {
+                float: right;
+                margin-left: 20px;
+            }
+        }
+        @media (max-width: 768px) {
+            .ad-header {
+                width: 100%;
+                height: 60px;
+            }
+            .ad-incontent {
+                width: 100%;
+                height: 200px;
+            }
+            .ad-catalog {
+                width: 100%;
+                height: 300px;
+            }
+        }
+    </style>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Golden Poultry Equipment Hub",
+        "url": "https://www.poultryequipmenthub.com/",
+        "description": "Your one-stop shop for high-quality poultry equipment in Kenya.",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://www.poultryequipmenthub.com/?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+</head>
+<body class="font-sans">
+    
+    <header class="bg-gray-800 bg-opacity-75 shadow-lg sticky top-0 z-50" role="banner">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" role="navigation" aria-label="Main navigation">
+            <div class="flex justify-between h-16">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="/" class="text-white font-bold text-xl">Golden Poultry Equipment Hub</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="#home" class="nav-link text-gray-300 hover:text-orange-500 px-3 py-2 rounded-md text-sm font-medium" aria-current="page">Home</a>
+                    <a href="#about" class="nav-link text-gray-300 hover:text-orange-500 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                    <a href="#cart" class="nav-link text-gray-300 hover:text-orange-500 px-3 py-2 rounded-md text-sm font-medium">Cart (<span id="cart-count" aria-live="polite">0</span>)</a>
+                    <a href="#product-catalog" class="nav-link text-gray-300 hover:text-orange-500 px-3 py-2 rounded-md text-sm font-medium">Product Catalog</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col" role="main">
+            <div class="hero-bg text-white py-20 text-center rounded-lg">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h1 class="text-4xl font-extrabold sm:text-5xl fade-in">Welcome to Golden Poultry Equipment Hub</h1>
+                    <p class="mt-4 text-lg sm:text-xl fade-in">Your one-stop shop for high-quality poultry equipment.</p>
+                    <button id="shop-now" class="mt-6 bg-orange-500 text-white px-6 py-3 rounded-full hover:bg-orange-600" aria-label="Shop now">Shop Now</button>
+                </div>
+            </div>
+            <div class="mt-6 content-bg rounded-lg p-4">
+                <label for="product-search" class="sr-only">Search equipment</label>
+                <input id="product-search" type="search" placeholder="Search equipment..." class="w-full p-2 border border-gray-600 rounded bg-gray-900 text-white" aria-label="Search equipment">
+            </div>
+            <div class="mt-10">
+                <h2 class="text-3xl font-extrabold text-white text-center">Our Products</h2>
+                <p class="mt-4 text-lg text-gray-300 text-center">Explore our wide range of high-quality poultry equipment.</p>
+                <div id="our-products-catalog" class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" role="region" aria-label="Our products catalog"><div class="spinner" style="display: block;"></div></div>
+            </div>
+           
+            <div class="mt-10">
+                <h2 class="text-3xl font-extrabold text-white text-center">Our Location</h2>
+                <p class="mt-4 text-lg text-gray-300 text-center">Visit us at our main location in Nairobi, Kenya.</p>
+                <div class="mt-6">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.815!2d36.821946!3d-1.283253!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x5b02a0f70e658d91!2sGolden%20Poultry%20Equipment%20Hub!5e0!3m2!1sen!2s!4v1697059200000" 
+                        width="100%" 
+                        height="400" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade" 
+                        title="Map of Golden Poultry Equipment Hub in Nairobi, Kenya">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 content-bg flex flex-col" role="region" aria-labelledby="about-title">
+            <h2 id="about-title" class="text-3xl font-extrabold text-white text-center">About Golden Poultry Equipment Hub</h2>
+            <p class="mt-4 text-lg text-gray-300 text-center">
+                Golden Poultry Equipment Hub is dedicated to providing top-quality poultry equipment. 
+                We source our products from trusted manufacturers to support farmers and poultry enthusiasts in Kenya and beyond. 
+                Our customer-friendly approach ensures you get the best equipment for your poultry farming needs. 
+                Join our community and grow with us!
+            </p>
+            <div class="mt-10 egg-container">
+                <div class="golden-egg" aria-label="Animated realistic pure gold egg with 3D hatching from the top, revealing a lifelike chick">
+                    <div class="shell-top"></div>
+                    <div class="shell-bottom"></div>
+                    <div class="shell-fragment shell-fragment-1"></div>
+                    <div class="shell-fragment shell-fragment-2"></div>
+                    <div class="inner-glow"></div>
+                    <div class="chick">
+                        <div class="eye left"></div>
+                        <div class="eye right"></div>
+                        <div class="feather-ruffle"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cart" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 content-bg flex flex-col" role="region" aria-labelledby="cart-title">
+            <h2 id="cart-title" class="text-4xl font-extrabold text-white text-center">Your Shopping Cart</h2>
+            <div class="mt-6">
+                <label for="customer-phone" class="text-gray-300">Your Phone Number:</label>
+                <input id="customer-phone" type="tel" placeholder="+254..." class="w-full p-2 mb-4 border border-gray-600 rounded bg-gray-900 text-white" aria-describedby="customer-phone-error">
+                <p id="customer-phone-error" class="error-message hidden">Enter a valid phone number (e.g., +254712345678).</p>
+                <label for="customer-location" class="text-gray-300">Your Location:</label>
+                <input id="customer-location" type="text" placeholder="e.g., Nairobi" class="w-full p-2 mb-4 border border-gray-600 rounded bg-gray-900 text-white" aria-describedby="customer-location-error">
+                <p id="customer-location-error" class="error-message hidden">Enter a valid location.</p>
+            </div>
+            <div id="cart-items" class="mt-8 flex-1" aria-live="polite">
+                <p class="text-gray-300 text-center text-lg">Your cart is empty.</p>
+            </div>
+            <div class="mt-6 text-right">
+                <p class="text-xl font-semibold text-white">Total: KSh <span id="cart-total">0.00</span></p>
+                <button id="checkout" class="mt-4 cart-button" disabled aria-label="Proceed to checkout">
+                    <span>Proceed to Checkout</span>
+                    <div id="checkout-spinner" class="spinner ml-2"></div>
+                </button>
+            </div>
+        </section>
+
+        <section id="product-catalog" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 content-bg flex flex-col" role="region" aria-labelledby="product-catalog-title">
+            <h2 id="product-catalog-title" class="text-3xl font-extrabold text-white text-center">Product Catalog</h2>
+            <p class="mt-4 text-lg text-gray-300 text-center">Browse our full range of poultry equipment.</p>
+            <!-- Catalog Ad Placeholder (Video) -->
+            <div class="ad-placeholder-catalog ad-catalog">
+                <a href="https://example.com" target="_blank" rel="noopener noreferrer">
+                    <video autoplay loop muted playsinline>
+                        <source src="https://player.vimeo.com/external/498670483.sd.mp4?s=7b9c8d2e1f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7&profile_id=165" type="video/mp4">
+                        <p>Advertisement (160x600)</p>
+                    </video>
+                </a>
+            </div>
+            <div id="full-product-catalog" class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" role="region" aria-label="Full product catalog"><div class="spinner" style="display: block;"></div></div>
+        </section>
+    </main>
+
+    <div id="product-catalog-modal" class="modal">
+        <div class="modal-content">
+            <button id="modal-close" class="modal-close" aria-label="Close modal">x</button>
+            <img id="modal-image" src="" alt="Product image" class="w-full h-64 object-cover rounded-md mb-4" loading="lazy">
+            <h3 id="modal-name" class="text-2xl font-semibold text-white"></h3>
+            <p id="modal-price" class="mt-2 text-gray-300"></p>
+            <p id="modal-quantity" class="mt-2 text-gray-300"></p>
+            <button id="modal-add-to-cart" class="mt-4 bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600" aria-label="Add to cart">Add to Cart</button>
+        </div>
+    </div>
+
+    <footer class="bg-gray-800 bg-opacity-75 py-10" role="contentinfo">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div>
+                <p class="text-gray-400">© 2025 Golden Poultry Equipment Hub. All rights reserved.</p>
+            </div>
+            <div>
+                <p class="text-gray-400 mb-2">Contact Us:</p>
+                <p class="text-gray-300">Phone: <a href="tel:+254746628669" class="text-orange-400 hover:text-orange-300">+254 746 628669</a></p>
+                <p class="text-gray-300">Email: <a href="mailto:poultryfarm02@poultry.com" class="text-orange-400 hover:text-orange-300">poultryfarm02@poultry.com</a></p>
+            </div>
+            <div>
+                <p class="text-gray-400 mb-2">Chat With Us:</p>
+                <div class="flex">
+                    <a href="https://www.facebook.com/photo/?fbid=479104054286398&set=a.424107009786103" aria-label="Visit our Facebook page" target="_blank" rel="noopener noreferrer">
+                        <img src="https://cdn-icons-png.flaticon.com/512/145/145802.png" alt="Facebook icon" class="w-6 h-6 mr-4" loading="lazy">
+                    </a>
+                    <a href="https://wa.me/254746628669" aria-label="Contact us on WhatsApp" target="_blank" rel="noopener noreferrer">
+                        <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp icon" class="w-6 h-6" loading="lazy">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let products = [];
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const ADMIN_PHONE = '+254746628669';
+        let currentSlide = 0;
+
+        // Hardcoded product slots with original pasted paths
+        const PRODUCT_SLOTS = [
+            {
+                id: 1,
+                name: "Big Transport Crates",
+                price: 4500.00,
+                quantity: 10,
+                image: "c:\\Users\\PC\\OneDrive\\Documents\\Downloads\\GPEH 1.jpg"
+            },
+            {
+                id: 2,
+                name: "64 Egg Incubator AC DC",
+                price: 12000.00,
+                quantity: 15,
+                image: "c:\\Users\\PC\\OneDrive\\Documents\\GPEH 2.jpg"
+            },
+            {
+                id: 3,
+                name: "600KG Pellet",
+                price: 280000.00,
+                quantity: 23,
+                image: "c:\\Users\\PC\\OneDrive\\Documents\\GPEH 3.jpg"
+            },
+            {
+                id: 4,
+                name: "XM 18D Controller",
+                price: 6000.00,
+                quantity: 20,
+                image: "c:\\Users\\PC\\OneDrive\\Documents\\GPEH 4.jpg"
+            },
+            {
+                id: 5,
+                name: "128 Chicken/Birds Cages ",
+                price: 37000.00,
+                quantity: 15,
+                image: "c:\\Users\\PC\\OneDrive\\Documents\\GPEH 5.jpg"
+            },
+            {
+                id: 6,
+                name: "Nipple With Cup",
+                price: 8000.00,
+                quantity: 24,
+                image: "c:\\Users\\PC\\OneDrive\\Documents\\GPEH 6.jpg"
+            },
+            {
+                id: 7,
+                name: "Pellet Roller",
+                price: 20000.00,
+                quantity: 10,
+                image: "c:\\Users\\PC\\OneDrive\\Documents\\GPEH 7.jpg"
+            },
+            {
+                id: 8,
+                name: "Extruder/Fish Pellets 30KG HR",
+                price: 550000.00,
+                quantity: 8,
+                image: "c:\\Users\\PC\\OneDrive\\Documents\\GPEH 8.jpg"
+            },
+            {
+                id: 9,
+                name: "100KG HR Pellet Machine",
+                price: 105000.00,
+                quantity: 25,
+                image: "c:\\Users\\PC\\OneDrive\\Documents\\GPEH 9.jpg"
+            },
+            {
+                id: 10,
+                name: "Poshomill 250KG",
+                price: 75000.00,
+                quantity: 12,
+                image: "c:\\Users\\PC\\OneDrive\\Documents\\GPEH 10.jpg"
+            },
+            {
+                id: 11,
+                name: "128 Egg Incubator Ac DC ",
+                price: 21000.00,
+                quantity: 50,
+                image: "c:\\Users\\PC\\OneDrive\\Documents\\GPEH 11.jpg"
+            },
+            {
+                id: 12,
+                name: "196 Egg Incubator AC DC",
+                price: 27000.00,
+                quantity: 12,
+                image: "c:\\Users\\PC\\OneDrive\\Documents\\GPEH 12.jpg"
+            },
+            {
+                id: 13,
+                name: "1 Tonne Poultry Mixer",
+                price: 400000.00,
+                quantity: 6,
+                image: "c:\\Users\\PC\\OneDrive\\Documents\\GPEH 13.jpg"
+            },
+            {
+                id: 14,
+                name: "Pigeon Nipple",
+                price: 120000.00,
+                quantity: 15,
+                image: "c:\\Users\\PC\\OneDrive\\Documents\\GPEH 14.jpg"
+            },
+            {
+                id: 15,
+                name: "56 Egg Incubator AC DC",
+                price: 20000.00,
+                quantity: 30,
+                image: "c:\\Users\\PC\\OneDrive\\Documents\\GPEH 15.jpg"
+            },
+            {
+                id: 16,
+                name: "136 Egg Incubator AC DC",
+                price: 22000.00,
+                quantity: 15,
+                image: "c:\\Users\\PC\\OneDrive\\Documents\\GPEH 16.jpg"
+            },
+            {
+                id: 17,
+                name: "500KG Poultry Mixer",
+                price: 350000.00,
+                quantity: 10,
+                image: "c:\\Users\\PC\\OneDrive\\Documents\\GPEH 17.jpg"
+            },
+            {
+                id: 18,
+                name: "1056 Egg Incubator ",
+                price: 85000.00,
+                quantity: 28,
+                image: "c:\\Users\\PC\\OneDrive\\Documents\\GPEH 18.jpg"
+            },
+            {
+                id: 19,
+                name: "Small Transport crates",
+                price: 4000.00,
+                quantity: 40,
+                image: "c:\\Users\\PC\\OneDrive\\Documents\\GPEH 19.jpg"
+            },
+            {
+                id: 20,
+                name: "Automatic Bell Drinker",
+                price: 1200.00,
+                quantity: 13,
+                image: "c:\\Users\\PC\\OneDrive\\Documents\\GPEH 20.jpg"
+            },
+            {
+                id: 21,
+                name: "Baler",
+                price: 14000000.00,
+                quantity: 7,
+                image: "c:\\Users\\PC\\OneDrive\\Documents\\GPEH 21.jpg"
+            },
+            {
+                id: 22,
+                name: "204 Egg Incubator",
+                price: 28000.00,
+                quantity: 35,
+                image: "c:\\Users\\PC\\OneDrive\\Documents\\GPEH 22.jpg"
+            },
+            {
+                id: 23,
+                name: "6.5T Combined Chaff Cutter",
+                price: 45000.00,
+                quantity: 20,
+                image: "c:\\Users\\PC\\OneDrive\\Documents\\GPEH 23.jpg"
+            },
+            { 
+                id: 24, 
+                name: "500KG Mixer And Grinder", 
+                price: 350000.00, 
+                quantity: 23, 
+                image: "c:\\Users\\PC\\OneDrive\\Documents\\GPEH 24.jpg" 
+            },
+            { 
+                id: 25, 
+                name: "30CM Fan", 
+                price: 5500.00, 
+                quantity: 18, 
+                image: "c:\\Users\\PC\\OneDrive\\Documents\\GPEH 25.jpg" 
+            },
+            { 
+                id: 26, 
+                name: "25CM Fan ", 
+                price: 3800.00, 
+                quantity: 29, 
+                image: "c:\\Users\\PC\\OneDrive\\Documents\\GPEH 26.jpg" 
+            },
+            { 
+                id: 27, 
+                name: "300 Egg Incubator", 
+                price: 58000.00, 
+                quantity: 14, 
+                image: "c:\\Users\\PC\\OneDrive\\Documents\\GPEH 27.jpg" 
+            },
+            { 
+                id: 28, 
+                name: "Debeaker Machine", 
+                price: 25000.00, 
+                quantity:26, 
+                image: "c:\\Users\\PC\\OneDrive\\Documents\\GPEH 28.jpg" 
+            },
+            { 
+                id: 29, 
+                name: "Chick Long Feeder", 
+                price: 250.00, 
+                quantity: 10, 
+                image: "c:\\Users\\PC\\OneDrive\\Documents\\GPEH 29.jpg" 
+            },
+            { 
+                id: 30, 
+                name: "Gas Brooder", 
+                price: 15500.00, 
+                quantity: 22, 
+                image: "c:\\Users\\PC\\OneDrive\\Documents\\GPEH 30.jpg" 
+            },
+            { 
+                id: 31, 
+                name: "400KG Pellet", 
+                price: 230000.00, 
+                quantity: 18, 
+                image: "c:\\Users\\PC\\OneDrive\\Documents\\GPEH 31.jpg" 
+            },
+            { 
+                id: 32, 
+                name: "Plucker Fingers", 
+                price: 100.00, 
+                quantity: 38, 
+                image: "c:\\Users\\PC\\OneDrive\\Documents\\GPEH 32.jpg" 
+            }
+        ];
+
+        // Default placeholder image
+        const DEFAULT_IMAGE = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAwAB/irl2AAAAABJRU5ErkJggg==';
+
+        async function loadProducts() {
+            const catalog = document.getElementById('our-products-catalog');
+            const fullCatalog = document.getElementById('full-product-catalog');
+            catalog.innerHTML = '<div class="spinner" style="display: block;"></div>';
+            fullCatalog.innerHTML = '<div class="spinner" style="display: block;"></div>';
+            try {
+                products = PRODUCT_SLOTS.filter(p => p.name && p.price > 0 && p.quantity >= 0);
+                if (products.length === 0) {
+                    throw new Error('No valid products defined');
+                }
+                // Normalize all image paths at load time
+                products.forEach(product => {
+                    product.image = normalizeImagePath(product.image);
+                });
+                console.log('Loaded products with normalized images:', products);
+                renderProducts();
+                renderProducts('', 'full-product-catalog');
+            } catch (error) {
+                console.error('Error loading products:', error.message);
+                products = [];
+                catalog.innerHTML = '<p class="text-gray-300 text-center">No products available. Please check back later or contact admin.</p>';
+                fullCatalog.innerHTML = '<p class="text-gray-300 text-center">No products available. Please check back later or contact admin.</p>';
+            }
+        }
+
+        function debounce(func, wait) {
+            let timeout;
+            return function (...args) {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(this, args), wait);
+            };
+        }
+
+        function isValidPhone(phone) {
+            return /^\+254\d{9}$/.test(phone);
+        }
+
+        function toggleError(inputId, errorId, isValid) {
+            const input = document.getElementById(inputId);
+            const error = document.getElementById(errorId);
+            input.classList.toggle('error', !isValid);
+            error.classList.toggle('hidden', isValid);
+        }
+
+        function showSection(sectionId) {
+            document.querySelectorAll('section').forEach(section => section.classList.add('hidden'));
+            document.getElementById(sectionId).classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showProductModal(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) {
+                console.error('Product not found, ID:', productId);
+                alert('Product not found.');
+                return;
+            }
+            const modal = document.getElementById('product-catalog-modal');
+            const imageSrc = product.image || DEFAULT_IMAGE;
+            console.log('Displaying product:', product.name, 'Image:', imageSrc);
+            document.getElementById('modal-image').src = imageSrc;
+            document.getElementById('modal-image').alt = product.name;
+            document.getElementById('modal-name').textContent = product.name;
+            document.getElementById('modal-price').textContent = `KSh ${parseFloat(product.price).toFixed(2)}`;
+            document.getElementById('modal-quantity').textContent = `Available Quantity: ${product.quantity}`;
+            document.getElementById('modal-add-to-cart').onclick = () => addToCart(product.id);
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('product-catalog-modal').style.display = 'none';
+        }
+
+        function normalizeImagePath(path) {
+            if (!path) return DEFAULT_IMAGE;
+            // Handle base64 data URLs
+            if (path.startsWith('data:image/')) return path;
+            // Handle absolute URLs
+            if (path.startsWith('http://') || path.startsWith('https://')) return path;
+            // Handle relative paths
+            if (path.startsWith('./') || path.startsWith('/')) return path;
+            // Handle local file paths (Windows/Linux/Mac)
+            const fileName = path.replace(/\\/g, '/').split('/').pop();
+            if (fileName) {
+                // Replace spaces with %20 for URL encoding
+                const encodedFileName = encodeURIComponent(fileName);
+                return `./images/${encodedFileName}`;
+            }
+            return DEFAULT_IMAGE;
+        }
+
+        function renderProducts(filter = '', containerId = 'our-products-catalog') {
+            const catalog = document.getElementById(containerId);
+            catalog.innerHTML = '';
+            const filteredProducts = products.filter(p => 
+                p.name.toLowerCase().includes(filter.toLowerCase())
+            );
+            if (filteredProducts.length === 0) {
+                console.log('No products found for filter:', filter);
+                catalog.innerHTML = '<p class="text-gray-300 text-center">No products found.</p>';
+            } else {
+                filteredProducts.forEach(product => {
+                    const imageSrc = product.image || DEFAULT_IMAGE;
+                    console.log('Rendering product:', product.name, 'Image:', imageSrc);
+                    catalog.innerHTML += `
+                        <article class="card-hover bg-gray-800 bg-opacity-75 p-6 rounded-lg shadow-md fade-in">
+                            <img src="${imageSrc}" alt="${product.name}" class="w-full h-48 object-cover rounded-md cursor-pointer" loading="lazy" onerror="this.src='${DEFAULT_IMAGE}'; this.alt='Image unavailable'; console.error('Failed to load image for ${product.name}:', this.src);" onclick="showProductModal(${product.id})">
+                            <h3 class="mt-4 text-xl font-semibold text-white">${product.name}</h3>
+                            <p class="mt-2 text-gray-300">KSh ${parseFloat(product.price).toFixed(2)}</p>
+                            <p class="mt-2 text-gray-300">Available: ${product.quantity}</p>
+                            <button onclick="addToCart(${product.id})" class="mt-4 bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600" aria-label="Add ${product.name} to cart">Add to Cart</button>
+                        </article>
+                    `;
+                });
+            }
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) {
+                console.error('Product not found for cart, ID:', productId);
+                alert('Product not found.');
+                return;
+            }
+            if (product.quantity <= 0) {
+                console.log('Out of stock:', product.name);
+                alert('This item is out of stock.');
+                return;
+            }
+            const cartItem = cart.find(item => item.id === productId);
+            if (cartItem) {
+                if (cartItem.quantity >= product.quantity) {
+                    console.log('Cannot add more:', product.name, 'Stock limit reached');
+                    alert('Cannot add more items than available in stock.');
+                    return;
+                }
+                cartItem.quantity += 1;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            console.log('Cart updated:', cart);
+            updateCart();
+            closeModal();
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            console.log('Item removed from cart, ID:', productId);
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItems = document.getElementById('cart-items');
+            const cartCount = document.getElementById('cart-count');
+            const cartTotal = document.getElementById('cart-total');
+            const checkoutBtn = document.getElementById('checkout');
+            cartItems.innerHTML = '';
+            let total = 0;
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p class="text-gray-300 text-center text-lg">Your cart is empty.</p>';
+                checkoutBtn.disabled = true;
+            } else {
+                cart.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    total += itemTotal;
+                    cartItems.innerHTML += `
+                        <div class="cart-item flex justify-between items-center">
+                            <div>
+                                <h4 class="text-lg font-semibold text-white">${item.name}</h4>
+                                <p class="text-gray-300">Quantity: ${item.quantity} | KSh ${parseFloat(itemTotal).toFixed(2)}</p>
+                            </div>
+                            <button onclick="removeFromCart(${item.id})" class="text-red-500 hover:text-red-600" aria-label="Remove ${item.name} from cart">Remove</button>
+                        </div>
+                    `;
+                });
+                checkoutBtn.disabled = false;
+            }
+            cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartTotal.textContent = parseFloat(total).toFixed(2);
+            console.log('Cart updated: Total items:', cartCount.textContent, 'Total price:', cartTotal.textContent);
+        }
+
+        document.getElementById('checkout').addEventListener('click', () => {
+            if (cart.length === 0) return;
+            const customerPhone = document.getElementById('customer-phone').value.trim();
+            const customerLocation = document.getElementById('customer-location').value.trim();
+            const spinner = document.getElementById('checkout-spinner');
+            toggleError('customer-phone', 'customer-phone-error', isValidPhone(customerPhone));
+            toggleError('customer-location', 'customer-location-error', customerLocation.length > 0);
+            if (!isValidPhone(customerPhone) || !customerLocation) return;
+            spinner.style.display = 'block';
+            setTimeout(() => {
+                let total = 0;
+                const items = cart.map(item => {
+                    const itemTotal = item.price * item.quantity;
+                    total += itemTotal;
+                    return `${item.name}: ${item.quantity} x KSh ${parseFloat(item.price).toFixed(2)} = KSh ${parseFloat(itemTotal).toFixed(2)}`;
+                }).join('\n');
+                const message = `New Order\nCustomer: ${customerPhone}\nLocation: ${customerLocation}\nItems:\n${items}\nTotal: KSh ${parseFloat(total).toFixed(2)}`;
+                const encodedMessage = encodeURIComponent(message);
+                window.open(`https://wa.me/${ADMIN_PHONE.replace('+', '')}?text=${encodedMessage}`, '_blank');
+                console.log('Order sent:', message);
+                alert('Order sent to admin via WhatsApp!');
+                cart = [];
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCart();
+                spinner.style.display = 'none';
+            }, 500);
+        });
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const sectionId = link.getAttribute('href').substring(1);
+                showSection(sectionId);
+            });
+        });
+
+        document.getElementById('product-search').addEventListener('input', debounce((e) => {
+            console.log('Search filter applied:', e.target.value);
+            renderProducts(e.target.value);
+            renderProducts(e.target.value, 'full-product-catalog');
+        }, 300));
+
+        document.getElementById('shop-now').addEventListener('click', () => {
+            document.getElementById('our-products-catalog').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        document.getElementById('modal-close').addEventListener('click', closeModal);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Initializing page');
+            loadProducts();
+            updateCart();
+            showSection('home');
+        });
+    </script>
+</body>
+</html>
